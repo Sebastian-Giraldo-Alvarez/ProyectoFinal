@@ -6,7 +6,9 @@
 #include <QGraphicsView>
 #include <QGraphicsItem>
 #include <QKeyEvent>
-//#include <vector>
+#include "personaje.h"
+#include "bala.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -20,11 +22,14 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void keyPressEvent(QKeyEvent *event);
 
 private:
     Ui::MainWindow *ui;
     QGraphicsScene* scene;
     QGraphicsView * view;
+    Personaje *Jugador1;
+
     //void keyPressEvent(QKeyEvent *event);
 };
 #endif // MAINWINDOW_H
