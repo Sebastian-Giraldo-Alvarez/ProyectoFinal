@@ -3,9 +3,10 @@
 #include <QGraphicsView>
 #include <QPixmap>
 #include "bala.h"
-Personaje::Personaje(int x, int y, QObject *parent): QObject (parent){
+Personaje::Personaje(int x, int y,Puntaje *puntaje,QObject *parent): QObject (parent){
     _x = x;
     _y = y;
+    pun=puntaje;
     setPos(x*20, y*20);
     Derecha[0]=QPixmap("/Users/sebas/OneDrive/Escritorio/ProyectoFinal/ProyectoFinal_/Imagenes/SpriteLisa1Derecha.PNG");
     Derecha[0] = Derecha[0].scaled(100, 100, Qt::KeepAspectRatio);
@@ -21,6 +22,11 @@ Personaje::Personaje(int x, int y, QObject *parent): QObject (parent){
     Izquierda[2] = Izquierda[2].scaled(100, 100, Qt::KeepAspectRatio);
     Disparo=QPixmap("/Users/sebas/OneDrive/Escritorio/ProyectoFinal/ProyectoFinal_/Imagenes/SpriteDisparo.PNG");
     Disparo = Disparo.scaled(150, 150, Qt::KeepAspectRatio);
+    if (Derecha[0].isNull()||Derecha[1].isNull()||Derecha[2].isNull()||Izquierda[0].isNull()||Izquierda[1].isNull()||Izquierda[2].isNull()||Disparo.isNull()) {
+        qDebug() << "Error: No se pudo cargar la imagen del fondo.";
+    } else {
+        qDebug() << "Imagen del fondo cargada correctamente.";
+    }
     setPixmap(Derecha[0]);
     UsandoSprite=true;
 }
@@ -32,17 +38,23 @@ void Personaje::Mover(char dir)
 {
     setFocus();
     if(dir=='A'){
-        _x--;
-        setPos(_x*20,_y*20);
-        CambiarSpriteIzquierda();
+        if(_x>0){
+            _x--;
+            setPos(_x*20,_y*20);
+            CambiarSpriteIzquierda();
+        }
+
     }
     else if(dir=='D'){
-        _x++;
-        setPos(_x*20,_y*20);
-        CambiarSpriteDerecha();
+        if(_x<60){
+            _x++;
+            setPos(_x*20,_y*20);
+            CambiarSpriteDerecha();
+        }
+
     }
     else if(dir=='E'){
-        Bala *bala=new Bala();
+        Bala *bala=new Bala(pun);
         bala->setPos(_x*20,_y*20);
         scene()->addItem(bala);
         CambiarSpriteDisparo();

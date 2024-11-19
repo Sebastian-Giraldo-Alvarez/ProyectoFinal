@@ -10,14 +10,22 @@ CONFIG += c++17
 
 SOURCES += \
     bala.cpp \
+    escombros.cpp \
     main.cpp \
     mainwindow.cpp \
-    personaje.cpp
+    monorriel.cpp \
+    personaje.cpp \
+    puntaje.cpp \
+    vida.cpp
 
 HEADERS += \
     bala.h \
+    escombros.h \
     mainwindow.h \
-    personaje.h
+    monorriel.h \
+    personaje.h \
+    puntaje.h \
+    vida.h
 
 FORMS += \
     mainwindow.ui

@@ -3,11 +3,12 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QDebug>
+#include "puntaje.h"
 class Personaje: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    Personaje(int x, int y, QObject *parent = nullptr);
+    Personaje(int x, int y,Puntaje *puntaje, QObject *parent = nullptr);
     ~Personaje();
     void Mover(char dir);
     QPixmap SepararSpirte(int X_,int Y_, int Alto, int Ancho, char * path);
@@ -22,6 +23,7 @@ private:
     QPixmap Izquierda[3];
     QPixmap Disparo;
     bool UsandoSprite=false,UsandoSprite2=false;
+    Puntaje*pun;
 };
 
 #endif // PERSONAJE_H

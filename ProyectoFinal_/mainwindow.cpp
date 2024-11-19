@@ -1,8 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "personaje.h"
-
-
+#include <QMessageBox>
+#include <QTimer>
+#include "escombros.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -27,18 +27,24 @@ MainWindow::MainWindow(QWidget *parent)
     fondo->setPos(0, 0);  // Posicionar la imagen en el origen de la escena
     scene->addItem(fondo);
     setWindowTitle(tr("¡The Monorail attack!"));
-    Jugador1=new Personaje(30,30);
     QGraphicsRectItem* paredInferior = scene->addRect(0, 700, 1300, 20); // Pared inferior
     QPixmap texturaBloques("/Users/sebas/OneDrive/Escritorio/ProyectoFinal/ProyectoFinal_/Imagenes/Pasto");
     QBrush brush(texturaBloques.scaled(20,20,Qt::KeepAspectRatio));  // Crear un pincel con la textura cargada
     paredInferior->setBrush(brush);
-
     QPen pen(Qt::NoPen);        // Sin borde (bordes sin color.)
-
     paredInferior->setPen(pen);
-    //paredInferior->setOpacity(0);
+    puntaje=new Puntaje;
+    scene->addItem(puntaje);
+    vida=new Vida;
+    scene->addItem(vida);
+    vida->setPos(120,0);
+    Jugador1=new Personaje(30,30, puntaje);
     setFocus();
     scene->addItem(Jugador1);
+    monorriel=new Monorriel(vida);
+    monorriel->setPos(0,20);
+    scene->addItem(monorriel);
+    connect(monorriel, &Monorriel::JuegoPerdido, this, &MainWindow::PerderJuego);
 
 }
 void MainWindow::keyPressEvent(QKeyEvent *event)
@@ -53,6 +59,17 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         Jugador1->Mover('E');
     }
 
+}
+
+void MainWindow::PerderJuego()
+{
+    QMessageBox* mensaje = new QMessageBox(QMessageBox::Information,
+                                           "Fin del juego",
+                                           "¡Perdiste el juego!",
+                                           QMessageBox::NoButton,
+                                           this);
+    mensaje->show();
+    this->close();
 }
 MainWindow::~MainWindow()
 {
