@@ -1,5 +1,6 @@
 debug/bala.o
 debug/escombros.o
+debug/explosion.o
 debug/main.o
 debug/mainwindow.o
 debug/monorriel.o
@@ -8,6 +9,7 @@ debug/puntaje.o
 debug/vida.o
 debug/moc_bala.o
 debug/moc_escombros.o
+debug/moc_explosion.o
 debug/moc_mainwindow.o
 debug/moc_monorriel.o
 debug/moc_personaje.o

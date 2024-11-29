@@ -3,6 +3,7 @@
 #include <QGraphicsRectItem> // Paquete para uso de rectangulos desde Qt.
 #include <QGraphicsPixmapItem>
 #include <QDebug>
+#include "explosion.h"
 Escombros::Escombros(int Escom, Vida *vida) {
     vida_=vida;
     if(Escom==1){
@@ -89,7 +90,11 @@ void Escombros::MoverEscombro()
 {
     int vidas=vida_->GetVida();
     setPos(x(),y()+10);
+    explosion_++;
+    Explosion * explosion=new Explosion;
+    explosion->setPos(x(),613);
     if(pos().y()>650){//Cuando la figura pase totalmente la vista
+        scene()->addItem(explosion);
         if(vidas==0){
             emit JuegoPerdido();
         }
@@ -102,3 +107,4 @@ void Escombros::MoverEscombro()
         //qDebug()<<"Se elimino";
     }
 }
+

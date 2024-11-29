@@ -1,5 +1,6 @@
 release/bala.o
 release/escombros.o
+release/explosion.o
 release/main.o
 release/mainwindow.o
 release/monorriel.o
@@ -8,6 +9,7 @@ release/puntaje.o
 release/vida.o
 release/moc_bala.o
 release/moc_escombros.o
+release/moc_explosion.o
 release/moc_mainwindow.o
 release/moc_monorriel.o
 release/moc_personaje.o

@@ -19,6 +19,8 @@ private:
     bool movimiento=false;
     int Escom=0;
     Vida *vida_;
+    int aumentardificultad=0;
+    int dificultad=1;
 };
 
 #endif // MONORRIEL_H

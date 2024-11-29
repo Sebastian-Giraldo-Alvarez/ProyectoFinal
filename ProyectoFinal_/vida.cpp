@@ -3,7 +3,7 @@
 Vida::Vida(QGraphicsItem *parent): QGraphicsTextItem(parent)
 {
     vida=3;
-    setPlainText(QString("Vidas: ") + QString::number(vida) +QString("    !EVITA QUE LOS ESCOMBROS CAIGAN A SPRINGFIELD!"));
+    setPlainText(QString("Vidas: ") + QString::number(vida+1));
     setDefaultTextColor(Qt::red);
     setFont(QFont("Veces",16));
 }
@@ -11,7 +11,7 @@ Vida::Vida(QGraphicsItem *parent): QGraphicsTextItem(parent)
 void Vida::Disminuir()
 {
     vida--;
-    setPlainText(QString("Vidas: ") + QString::number(vida));
+    setPlainText(QString("Vidas: ") + QString::number(vida+1));
 }
 
 int Vida::GetVida()

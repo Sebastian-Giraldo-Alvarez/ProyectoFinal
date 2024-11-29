@@ -3,6 +3,7 @@
 #include <QMessageBox>
 #include <QTimer>
 #include "escombros.h"
+#include "explosion.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -63,12 +64,12 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 void MainWindow::PerderJuego()
 {
-    QMessageBox* mensaje = new QMessageBox(QMessageBox::Information,
+    /*QMessageBox* mensaje = new QMessageBox(QMessageBox::Information,
                                            "Fin del juego",
                                            "¡Perdiste el juego!",
                                            QMessageBox::NoButton,
                                            this);
-    mensaje->show();
+    mensaje->show();*/
     this->close();
 }
 MainWindow::~MainWindow()

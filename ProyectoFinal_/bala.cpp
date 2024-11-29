@@ -1,4 +1,5 @@
 #include "bala.h"
+#include "explosion.h"
 #include <QTimer>
 #include <QGraphicsRectItem> // Paquete para uso de rectangulos desde Qt.
 #include <QGraphicsPixmapItem>
@@ -26,11 +27,16 @@ void Bala::MoverBala()
             Pun->Aumentar();
             scene()->removeItem(Colisiones[i]);
             scene()->removeItem(this);
+            ver=true;
             delete Colisiones[i];
             delete this;
             return;
         }
     }
+    if(ver==true){
+        ver=false;
+    }
+
     setPos(x(),y()-10);
     if(pos().y()+rect().height()<0){//Cuando la figura pase totalmente la vista
         scene()->removeItem(this);

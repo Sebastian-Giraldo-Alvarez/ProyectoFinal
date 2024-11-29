@@ -17,6 +17,8 @@ public slots:
 private:
     MainWindow *hola;
     Puntaje *Pun;
+    int equis,ye;
+    bool ver=false;
 };
 
 #endif // BALA_H

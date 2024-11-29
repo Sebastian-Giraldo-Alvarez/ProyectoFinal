@@ -18,7 +18,8 @@ Monorriel::Monorriel(Vida *vida) {
     timer->start(50);
     QTimer *timer2=new QTimer();
     connect(timer2,SIGNAL(timeout()),this,SLOT(GenerarEscombros()));
-    timer2->start(1000);
+    timer2->start(2000);
+
 }
 
 void Monorriel::MoverMonorriel()
@@ -39,7 +40,15 @@ void Monorriel::MoverMonorriel()
 
 void Monorriel::GenerarEscombros()
 {
+
+    aumentardificultad++;
     Escom++;
+    if(aumentardificultad==6){
+        dificultad++;
+        QTimer *timer=new QTimer();
+        connect(timer,SIGNAL(timeout()),this,SLOT(GenerarEscombros()));
+        timer->start(2000/dificultad);
+    }
     Escombros *escombro=new Escombros(Escom,vida_);
     connect(escombro, &Escombros::JuegoPerdido, this, &Monorriel::JuegoPerdido);
     escombro->setPos(x()+230,y()+100);

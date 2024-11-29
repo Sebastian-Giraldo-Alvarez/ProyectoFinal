@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     bala.cpp \
     escombros.cpp \
+    explosion.cpp \
     main.cpp \
     mainwindow.cpp \
     monorriel.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
 HEADERS += \
     bala.h \
     escombros.h \
+    explosion.h \
     mainwindow.h \
     monorriel.h \
     personaje.h \
