@@ -19,6 +19,7 @@ private:
     Puntaje *Pun;
     int equis,ye;
     bool ver=false;
+    int direccion=1;
 };
 
 #endif // BALA_H

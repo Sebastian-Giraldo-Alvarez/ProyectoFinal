@@ -27,18 +27,19 @@ void Bala::MoverBala()
             Pun->Aumentar();
             scene()->removeItem(Colisiones[i]);
             scene()->removeItem(this);
-            ver=true;
             delete Colisiones[i];
             delete this;
             return;
         }
     }
-    if(ver==true){
-        ver=false;
+    for(int i=0,n=Colisiones.size();i<n;i++){
+        if(typeid(*(Colisiones[i]))==typeid(Monorriel)){
+            direccion=-1;
+        }
     }
 
-    setPos(x(),y()-10);
-    if(pos().y()+rect().height()<0){//Cuando la figura pase totalmente la vista
+    setPos(x(),y()-10*direccion);
+    if(pos().y()+rect().height()<0||pos().y()==700){//Cuando la figura pase totalmente la vista
         scene()->removeItem(this);
         delete this;
         //qDebug()<<"Se elimino";

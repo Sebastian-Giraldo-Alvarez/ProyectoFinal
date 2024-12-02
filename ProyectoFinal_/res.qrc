@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/sounds">
+        <file>Imagenes/SonidoBack.mp3</file>
+        <file>Imagenes/fuego.mp3</file>
+        <file>Imagenes/Explosionmus.mp3</file>
+        <file>Imagenes/latigo.mp3</file>
+    </qresource>
+</RCC>

@@ -4,6 +4,8 @@
 #include <QGraphicsPixmapItem>
 #include <QDebug>
 #include "puntaje.h"
+#include <QMediaPlayer>
+#include <QAudioOutput>
 class Personaje: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
@@ -24,6 +26,8 @@ private:
     QPixmap Disparo;
     bool UsandoSprite=false,UsandoSprite2=false;
     Puntaje*pun;
+    QMediaPlayer *bala_;
+    QAudioOutput *audioOutput;
 };
 
 #endif // PERSONAJE_H

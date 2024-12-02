@@ -6,6 +6,11 @@
 Personaje::Personaje(int x, int y,Puntaje *puntaje,QObject *parent): QObject (parent){
     _x = x;
     _y = y;
+    bala_= new QMediaPlayer();
+    audioOutput = new QAudioOutput();
+    bala_->setAudioOutput(audioOutput);
+    audioOutput->setVolume(0.5); // Ajusta el volumen
+    bala_->setSource(QUrl("qrc:/sounds/Imagenes/latigo.mp3"));
     pun=puntaje;
     setPos(x*20, y*20);
     Derecha[0]=QPixmap("/Users/sebas/OneDrive/Escritorio/ProyectoFinal/ProyectoFinal_/Imagenes/SpriteLisa1Derecha.PNG");
@@ -58,6 +63,7 @@ void Personaje::Mover(char dir)
         bala->setPos(_x*20,_y*20);
         scene()->addItem(bala);
         CambiarSpriteDisparo();
+        bala_->play();
     }
 }
 

@@ -6,6 +6,8 @@
 #include <QGraphicsView> // paquete para vistas.
 #include "vida.h"
 #include "explosion.h"
+#include <QMediaPlayer>
+#include <QAudioOutput>
 class Escombros:public QObject, public QGraphicsRectItem
 {
     Q_OBJECT
@@ -18,6 +20,10 @@ signals:
 private:
     Vida *vida_;
     int explosion_=0;
+    float gravity = 0.9f;
+    float velocityY = 0.0f;
+    QMediaPlayer *explos;
+    QAudioOutput *audioOutput;
 };
 
 #endif // ESCOMBROS_H

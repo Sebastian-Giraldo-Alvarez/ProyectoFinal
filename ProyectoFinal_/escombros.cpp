@@ -6,6 +6,11 @@
 #include "explosion.h"
 Escombros::Escombros(int Escom, Vida *vida) {
     vida_=vida;
+    explos= new QMediaPlayer();
+    audioOutput = new QAudioOutput();
+    explos->setAudioOutput(audioOutput);
+    audioOutput->setVolume(0.01); // Ajusta el volumen
+    explos->setSource(QUrl("qrc:/sounds/Imagenes/Explosionmus.mp3"));
     if(Escom==1){
         setRect(0,0,100,50);
         QPixmap texturaBala("/Users/sebas/OneDrive/Escritorio/ProyectoFinal/ProyectoFinal_/Imagenes/Escombro1");
@@ -81,7 +86,7 @@ Escombros::Escombros(int Escom, Vida *vida) {
         setPen(pen);
         QTimer *timer=new QTimer();
         connect(timer,SIGNAL(timeout()),this,SLOT(MoverEscombro()));
-        timer->start(50);
+        timer->start(500);
     }
 
 }
@@ -89,12 +94,14 @@ Escombros::Escombros(int Escom, Vida *vida) {
 void Escombros::MoverEscombro()
 {
     int vidas=vida_->GetVida();
-    setPos(x(),y()+10);
+    velocityY += gravity;
+    setPos(x(),y()+velocityY);
     explosion_++;
     Explosion * explosion=new Explosion;
     explosion->setPos(x(),613);
     if(pos().y()>650){//Cuando la figura pase totalmente la vista
         scene()->addItem(explosion);
+        explos->play();
         if(vidas==0){
             emit JuegoPerdido();
         }

@@ -2,8 +2,8 @@
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <QTimer>
-#include "escombros.h"
-#include "explosion.h"
+#include <QMediaPlayer>
+#include <QAudioOutput>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -46,7 +46,12 @@ MainWindow::MainWindow(QWidget *parent)
     monorriel->setPos(0,20);
     scene->addItem(monorriel);
     connect(monorriel, &Monorriel::JuegoPerdido, this, &MainWindow::PerderJuego);
-
+    QMediaPlayer *musica = new QMediaPlayer();
+    QAudioOutput *audioOutput = new QAudioOutput();
+    musica->setAudioOutput(audioOutput);
+    audioOutput->setVolume(0.01); // Ajusta el volumen
+    musica->setSource(QUrl("qrc:/sounds/Imagenes/SonidoBack.mp3"));
+    musica->play();
 }
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {

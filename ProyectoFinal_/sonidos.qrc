@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/musica">
+        <file>Imagenes/Explosion - efecto de sonido - Plantillas Para Tus Videos (youtube).mp3</file>
+        <file>Imagenes/SonidoBack.mp3</file>
+    </qresource>
+</RCC>
